@@ -1,44 +1,28 @@
 package com.example.demo.service;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.model.Product;
-import com.example.demo.repository.ProductRepository;
-
-import lombok.RequiredArgsConstructor;
+import com.example.demo.repository.Impl.ProductRepositoryImpl;
 
 @Service
-@RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository productRepository;
+    private final ProductRepositoryImpl productRepository;
 
-    @Transactional(readOnly = true)
-    public List<Product> findAll() {
-	return productRepository.findAll();
+    public ProductService(ProductRepositoryImpl productRepository) {
+	this.productRepository = productRepository;
     }
 
-    @Transactional(readOnly = true)
-    public Product findOne(long id) {
-	return productRepository.findProductById(id);
+    public List<Product> getAll() throws SQLException {
+	return productRepository.getAll();
     }
 
-    @Transactional
-    public Product saveProduct(Product product) {
-	return productRepository.save(product);
-    }
-
-    @Transactional
-    public int updateProduct(Long id, Product product) {
-	return productRepository.updateProduct(id, product);
-    }
-
-    @Transactional
-    public void deleteProduct(long id) {
-	productRepository.deleteById(id);
+    public Product getOne(long id) throws SQLException {
+	return productRepository.getOne(id);
     }
 
 }

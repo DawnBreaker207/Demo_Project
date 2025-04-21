@@ -1,21 +1,68 @@
 package com.example.demo.model;
 
-import java.util.List;
-import jakarta.persistence.*;
-import lombok.*;
+import java.time.OffsetDateTime;
 
-@Data
-@Entity
-@Builder
-@Table(name = "shipment")
+import com.example.demo.config.Status;
+
 public class Shipment {
-    @Id
+
     private long id;
+    private Order orderId;
+    private Status method;
+    private long amount;
+    private OffsetDateTime paidAt;
 
-    private boolean status;
+    public Shipment() {
 
-    @OneToMany
-    @JoinColumn(name = "shipment_id")
-    private List<ShipmentItem> shipmentItem;
+    }
+
+    public Shipment(long id, Order orderId, Status method, long amount, OffsetDateTime paidAt) {
+
+	this.id = id;
+	this.orderId = orderId;
+	this.method = method;
+	this.amount = amount;
+	this.paidAt = paidAt;
+    }
+
+    public long getId() {
+	return id;
+    }
+
+    public void setId(long id) {
+	this.id = id;
+    }
+
+    public Order getOrderId() {
+	return orderId;
+    }
+
+    public void setOrderId(Order orderId) {
+	this.orderId = orderId;
+    }
+
+    public Status getMethod() {
+	return method;
+    }
+
+    public void setMethod(Status method) {
+	this.method = method;
+    }
+
+    public long getAmount() {
+	return amount;
+    }
+
+    public void setAmount(long amount) {
+	this.amount = amount;
+    }
+
+    public OffsetDateTime getPaidAt() {
+	return paidAt;
+    }
+
+    public void setPaidAt(OffsetDateTime paidAt) {
+	this.paidAt = paidAt;
+    }
 
 }

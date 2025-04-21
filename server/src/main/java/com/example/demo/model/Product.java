@@ -1,25 +1,43 @@
 package com.example.demo.model;
 
-import jakarta.persistence.*;
-import lombok.*;
+import java.math.BigDecimal;
 
-@Data
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name = "product")
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String name;
+    private BigDecimal price;
 
-    private String SKU;
+    public Product() {
+    }
 
-    private int weight;
+    public Product(long id, String name, BigDecimal price) {
+	this.id = id;
+	this.name = name;
+	this.price = price;
+    }
 
-    private int height;
+    public long getId() {
+	return id;
+    }
+
+    public void setId(long id) {
+	this.id = id;
+    }
+
+    public String getName() {
+	return name;
+    }
+
+    public void setName(String name) {
+	this.name = name;
+    }
+
+    public BigDecimal getPrice() {
+	return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+	this.price = price;
+    }
 }
