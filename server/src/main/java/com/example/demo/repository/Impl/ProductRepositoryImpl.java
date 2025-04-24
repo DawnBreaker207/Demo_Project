@@ -43,6 +43,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	    }
 	    return products;
 	} catch (SQLException ex) {
+	    ex.printStackTrace();
 	    throw new SQLException(ex);
 	}
     }
@@ -63,6 +64,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	    }
 	    return product;
 	} catch (SQLException ex) {
+	    ex.printStackTrace();
 	    throw new SQLException(ex);
 	}
 
@@ -86,7 +88,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
 	    return product;
 	} catch (SQLException ex) {
-
+	    ex.printStackTrace();
 	    throw new SQLException(ex);
 	}
     }
@@ -112,6 +114,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	    return product;
 
 	} catch (SQLException ex) {
+	    ex.printStackTrace();
 	    throw new SQLException(ex);
 	}
     }
@@ -127,6 +130,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 
 	    return;
 	} catch (SQLException ex) {
+	    ex.printStackTrace();
 	    throw new SQLException(ex);
 	}
     }
