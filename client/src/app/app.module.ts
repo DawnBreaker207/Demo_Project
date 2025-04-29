@@ -10,11 +10,18 @@ import { MatTableModule } from '@angular/material/table';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { CustomerViewComponent } from './components/customer/view/view.component';
+import { OrderViewComponent } from './components/order/view/view.component';
+import { ProductViewComponent } from './components/product/view/view.component';
+import { ShipmentViewComponent } from './components/shipment/view/view.component';
 import { ProductComponent } from './pages/product/product.component';
-import { ProductViewComponent } from './components/product/view/product-view.component';
+import { StatusTagsPipe } from './core/pipes/status-tags.pipe';
+import { CheckTagsPipe } from './core/pipes/check-tags.pipe';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
-  declarations: [AppComponent, ProductComponent,ProductViewComponent],
+  declarations: [AppComponent, ProductComponent,ProductViewComponent, CustomerViewComponent, OrderViewComponent, ShipmentViewComponent, StatusTagsPipe, CheckTagsPipe],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -24,6 +31,7 @@ import { ProductViewComponent } from './components/product/view/product-view.com
     MatSortModule,
     MatFormFieldModule,
     HttpClientModule,
+    MatButtonModule
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],
