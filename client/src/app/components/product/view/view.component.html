@@ -1,5 +1,3 @@
-
-
 <mat-form-field>
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" />
@@ -19,12 +17,23 @@
       <td mat-cell *matCellDef="let row">{{ row.name }}</td>
     </ng-container>
 
-    <!-- SKU -->
+    <!-- Price -->
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-      <td mat-cell *matCellDef="let row">{{ row.price | currency : "VND" }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.price | currency : 'VND' }}</td>
     </ng-container>
 
+    <!--Is Delete -->
+    <ng-container matColumnDef="is_delete">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">
+        <ng-container *ngIf="row.is_delete | check as status">
+          <button mat-raised-button [color]="status.color" >
+            {{ status.text }}
+          </button>
+        </ng-container>
+      </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
