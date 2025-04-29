@@ -4,7 +4,7 @@ import java.time.OffsetDateTime;
 
 import com.example.demo.config.Status;
 
-public class Order {
+public class Orders {
 
     private long id;
     private Customer customerId;
@@ -12,19 +12,25 @@ public class Order {
     private Status status;
     private Status paymentStatus;
     private OffsetDateTime createdAt;
+    private Shipment shipmentId;
+    private boolean is_delete ;
 
-    public Order() {
+
+    public Orders() {
 
     }
 
-    public Order(long id, Customer customerId, int total, Status status, Status paymentStatus,
-	    OffsetDateTime createdAt) {
+    public Orders(long id, Customer customerId, int total, Status status, Status paymentStatus,
+	    OffsetDateTime createdAt, Shipment shipmentId, boolean is_delete) {
+	super();
 	this.id = id;
 	this.customerId = customerId;
 	this.total = total;
 	this.status = status;
 	this.paymentStatus = paymentStatus;
 	this.createdAt = createdAt;
+	this.shipmentId = shipmentId;
+	this.is_delete = is_delete;
     }
 
     public long getId() {
@@ -74,5 +80,23 @@ public class Order {
     public void setCreatedAt(OffsetDateTime createdAt) {
 	this.createdAt = createdAt;
     }
+
+    public Shipment getShipmentId() {
+	return shipmentId;
+    }
+
+    public void setShipmentId(Shipment shipmentId) {
+	this.shipmentId = shipmentId;
+    }
+
+    public boolean isIs_delete() {
+        return is_delete;
+    }
+
+    public void setIs_delete(boolean is_delete) {
+        this.is_delete = is_delete;
+    }
+    
+    
 
 }
