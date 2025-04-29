@@ -1,7 +1,54 @@
-<mat-form-field>
-  <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" />
-</mat-form-field>
+<form [formGroup]="formQuery" (submit)="applyFilter()">
+  <!-- Customer name -->
+  <mat-form-field>
+    <mat-label>Search customer name</mat-label>
+    <input matInput type="text" formControlName="customerName" />
+  </mat-form-field>
+
+  <!-- Price -->
+  <mat-form-field>
+    <mat-label>Price</mat-label>
+    <input matInput type="number" formControlName="total" />
+  </mat-form-field>
+
+  <!-- Order Status -->
+  <mat-form-field>
+    <mat-label>Order Status</mat-label>
+    <mat-select formControlName="orderStatus">
+      <mat-option value="PENDING">Pending</mat-option>
+      <mat-option value="SUCCESS">Success</mat-option>
+      <mat-option value="FAILED">Failed</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Payment Status -->
+  <mat-form-field>
+    <mat-label>Payment Status</mat-label>
+    <mat-select formControlName="paymentStatus">
+      <mat-option value="PENDING">Pending</mat-option>
+      <mat-option value="SUCCESS">Success</mat-option>
+      <mat-option value="FAILED">Failed</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Date -->
+  <mat-form-field>
+    <mat-label>Date picker</mat-label>
+    <input matInput [matDatepicker]="picker" formControlName="createdAt" />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button type="submit">
+    <mat-icon>favorite</mat-icon>
+    Filter
+  </button>
+
+  <button mat-button type="button" (click)="clearFilter()">
+    <mat-icon>favorite</mat-icon>
+    Clear
+  </button>
+</form>
 
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
