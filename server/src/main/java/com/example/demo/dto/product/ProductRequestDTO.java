@@ -1,22 +1,23 @@
-package com.example.demo.model;
+package com.example.demo.dto.product;
 
 import java.math.BigDecimal;
 
-public class Product {
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+@JsonInclude(value = Include.NON_NULL)
+public class ProductRequestDTO {
     private long id;
     private String name;
     private BigDecimal price;
-    private boolean is_delete;
 
-    public Product() {
+    public ProductRequestDTO() {
     }
 
-    public Product(long id, String name, BigDecimal price, boolean is_delete) {
+    public ProductRequestDTO(long id, String name, BigDecimal price) {
 	this.id = id;
 	this.name = name;
 	this.price = price;
-	this.is_delete = is_delete;
     }
 
     public long getId() {
@@ -42,13 +43,4 @@ public class Product {
     public void setPrice(BigDecimal price) {
 	this.price = price;
     }
-
-    public boolean isIs_delete() {
-        return is_delete;
-    }
-
-    public void setIs_delete(boolean is_delete) {
-        this.is_delete = is_delete;
-    }
-    
 }
