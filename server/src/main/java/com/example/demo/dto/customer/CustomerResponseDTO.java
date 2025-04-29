@@ -1,17 +1,16 @@
-package com.example.demo.model;
+package com.example.demo.dto.customer;
 
-public class Customer {
-
+public class CustomerResponseDTO {
     private long id;
     private String name;
     private String phone;
     private String address;
-   
-    public Customer() {
+
+    public CustomerResponseDTO() {
 
     }
 
-    public Customer(long id, String name, String phone, String address) {
+    public CustomerResponseDTO(long id, String name, String phone, String address) {
 	this.id = id;
 	this.name = name;
 	this.phone = phone;
