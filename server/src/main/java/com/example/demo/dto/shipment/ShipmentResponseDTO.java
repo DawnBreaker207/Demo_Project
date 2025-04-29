@@ -1,25 +1,26 @@
-package com.example.demo.model;
+package com.example.demo.dto.shipment;
 
 import java.time.OffsetDateTime;
 
 import com.example.demo.config.Status;
+import com.example.demo.model.Orders;
 
-public class Shipment {
+public class ShipmentResponseDTO {
 
     private long id;
-//    private Status method;
-    private Status status;
+    private Status method;
     private long amount;
     private OffsetDateTime paidAt;
 
-    public Shipment() {
+    public ShipmentResponseDTO() {
 
     }
 
-    public Shipment(long id, Status status, long amount, OffsetDateTime paidAt) {
+    public ShipmentResponseDTO(long id, Status method, long amount, OffsetDateTime paidAt) {
 
 	this.id = id;
-	this.status = status;
+
+	this.method = method;
 	this.amount = amount;
 	this.paidAt = paidAt;
     }
@@ -32,12 +33,12 @@ public class Shipment {
 	this.id = id;
     }
 
-    public Status getStatus() {
-	return status;
+    public Status getMethod() {
+	return method;
     }
 
-    public void setStatus(Status status) {
-	this.status = status;
+    public void setMethod(Status method) {
+	this.method = method;
     }
 
     public long getAmount() {
@@ -55,5 +56,4 @@ public class Shipment {
     public void setPaidAt(OffsetDateTime paidAt) {
 	this.paidAt = paidAt;
     }
-
 }
