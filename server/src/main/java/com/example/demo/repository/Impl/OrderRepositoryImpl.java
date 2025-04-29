@@ -84,12 +84,13 @@ public class OrderRepositoryImpl implements OrderRepository {
 		sql.append(" AND o.created_at <= ?");
 		params.add(Timestamp.valueOf(query.getCreateTo()));
 	    }
-	    
+
 	    sql.append(" ORDER BY order_id ASC");
 	}
 
-	try (Connection conn = dataSource.getConnection()) {
-	    PreparedStatement prepare = conn.prepareStatement(sql.toString());
+	try (Connection conn = dataSource.getConnection();
+		PreparedStatement prepare = conn.prepareStatement(sql.toString())) {
+	    ;
 
 	    for (int i = 0; i < params.size(); i++) {
 		prepare.setObject(i + 1, params.get(i));
