@@ -1,12 +1,12 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { Order } from '../../../data/types/order';
-import { MatTableDataSource } from '@angular/material/table';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { OrderService } from '../../../data/services/order.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { clearParam } from '../../../core/utils/clear-param';
-import { DatePipe } from '@angular/common';
+import { formatDateUtils } from '../../../core/utils/format-date';
+import { OrderService } from '../../../data/services/order.service';
+import { Order } from '../../../data/types/order';
 
 @Component({
   selector: 'app-view',
@@ -20,13 +20,15 @@ formQuery!: FormGroup;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private orderService: OrderService, private fb : FormBuilder, private datePipe: DatePipe) {
+  constructor(private orderService: OrderService, private fb : FormBuilder) {
     this.formQuery = this.fb.group({
       customerName: [],
-      total: [],
+      minTotal: [],
+      maxTotal: [],
       orderStatus: [],
       paymentStatus: [],
-      createdAt: []
+      createFrom: [],
+      createTo: [],
     });
   }
 
@@ -40,13 +42,15 @@ formQuery!: FormGroup;
   ngAfterViewInit() {
   }
   applyFilter =() => {
-const createdAt = this.formQuery.controls['createdAt'].value;
+const createdForm = formatDateUtils( this.formQuery.controls['createFrom'].value);
+const createdTo = formatDateUtils( this.formQuery.controls['createTo'].value);
 
-const formattedDate = createdAt ? this.datePipe.transform(createdAt, 'yyyy-MM-ddTHH:mm:ss'): null;
+// const formattedDate = createdTo ? this.datePipe.transform(createdTo, 'yyyy-MM-ddTHH:mm:ss'): null;
 
 const params = {
   ...this.formQuery.value,
-  createdAt: formattedDate
+  createFrom: createdForm,
+  createTo:createdTo
 }
     const filterValues = params;
     const cleanedValue = clearParam(filterValues);

@@ -5,10 +5,16 @@
     <input matInput type="text" formControlName="customerName" />
   </mat-form-field>
 
-  <!-- Price -->
+  <!--Min Price -->
   <mat-form-field>
-    <mat-label>Price</mat-label>
-    <input matInput type="number" formControlName="total" />
+    <mat-label>Min price</mat-label>
+    <input matInput type="number" formControlName="minTotal" />
+  </mat-form-field>
+
+  <!--Min Price -->
+  <mat-form-field>
+    <mat-label>Max price</mat-label>
+    <input matInput type="number" formControlName="maxTotal" />
   </mat-form-field>
 
   <!-- Order Status -->
@@ -34,9 +40,16 @@
   <!-- Date -->
   <mat-form-field>
     <mat-label>Date picker</mat-label>
-    <input matInput [matDatepicker]="picker" formControlName="createdAt" />
+    <mat-date-range-input [rangePicker]="picker">
+      <input
+        matStartDate
+        placeholder="Start date"
+        formControlName="createFrom"
+      />
+      <input matEndDate placeholder="End date" formControlName="createTo" />
+    </mat-date-range-input>
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
+    <mat-date-range-picker #picker></mat-date-range-picker>
   </mat-form-field>
 
   <button mat-raised-button type="submit">
