@@ -71,7 +71,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 	    }
 
 	    if (query.getMaxTotal() != null) {
-		sql.append("AND o.total <= ?");
+		sql.append(" AND o.total <= ?");
 		params.add(query.getMaxTotal());
 	    }
 
