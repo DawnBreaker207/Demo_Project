@@ -7,6 +7,7 @@ import { clearParam } from '../../../core/utils/clear-param';
 import { formatDateUtils } from '../../../core/utils/format-date';
 import { OrderService } from '../../../data/services/order.service';
 import { Order } from '../../../data/types/order';
+import { SelectionModel } from '@angular/cdk/collections';
 
 @Component({
   selector: 'app-view',
@@ -17,6 +18,7 @@ export class OrderViewComponent implements OnInit, AfterViewInit{
  displayedColumns: string[] = ['id', 'name','order_status','shipment_status','total','created_at'];
   dataSource!: MatTableDataSource<Order>;
 formQuery!: FormGroup;
+selection = new SelectionModel<Order>(true, []);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
@@ -63,5 +65,27 @@ const params = {
 
   clearFilter =() =>{
    this.formQuery.reset();
+  }
+
+  isAllSelected (){
+    return this.dataSource?.data?.length > 0 &&
+         this.selection.selected.length === this.dataSource.data.length;
+  }
+
+  isPartialSelected(){
+    if (!this.dataSource?.data) {
+      return false; // Chưa có dữ liệu
+    }
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected > 0 && numSelected < numRows;
+  }
+
+  masterToggle(){
+    this.isAllSelected() ? this.selection.clear() : this.dataSource.data.forEach(row => this.selection.select(row));
+  }
+
+  toggleSelection(row: Order){
+    this.selection.toggle(row);
   }
 }

@@ -1,0 +1,36 @@
+<form [formGroup]="createFrom" (submit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="customerId" />
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Shipment Method</mat-label>
+    <mat-select formControlName="shipmentMethod">
+      <mat-option value="VIETTELPOST">Viettel Post</mat-option>
+      <mat-option value="COD">COD</mat-option>
+      <mat-option value="SHOPEEEXPRESS">Shoppe Express</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Products</mat-label>
+    <mat-select formControlName="item" multiple>
+      <ng-container *ngFor="let item of productData">
+        <mat-option [value]="{ id: item.id, price: item.price, quantity: 1 }">{{
+          item.name
+        }}</mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Total Price</mat-label>
+    <input
+      matInput
+      [value]="createFrom.get('total')?.value | currency : 'VND' : 'symbol'"
+      readonly
+    />
+  </mat-form-field>
+
+  <button mat-button>Submit</button>
+</form>

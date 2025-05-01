@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,9 +25,11 @@ import { ShipmentViewComponent } from './components/shipment/view/view.component
 import { CheckTagsPipe } from './core/pipes/check-tags.pipe';
 import { StatusTagsPipe } from './core/pipes/status-tags.pipe';
 import { ProductComponent } from './pages/product/product.component';
-import { DatePipe } from '@angular/common';
+import { CreateOrderComponent } from './components/order/create/create.component';
+
+
 @NgModule({
-  declarations: [AppComponent, ProductComponent,ProductViewComponent, CustomerViewComponent, OrderViewComponent, ShipmentViewComponent, StatusTagsPipe, CheckTagsPipe],
+  declarations: [AppComponent, ProductComponent,ProductViewComponent, CustomerViewComponent, OrderViewComponent, ShipmentViewComponent, StatusTagsPipe, CheckTagsPipe, CreateOrderComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -40,7 +44,8 @@ import { DatePipe } from '@angular/common';
     MatDatepickerModule,
     MatInputModule,
     MatSelectModule,
-    MatIconModule
+    MatIconModule,
+    MatCheckboxModule
   ],
   providers: [provideAnimationsAsync(), provideNativeDateAdapter(),DatePipe],
   bootstrap: [AppComponent],
